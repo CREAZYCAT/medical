@@ -1,0 +1,11 @@
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>mobile</th>
+            </tr>
+            </thead>
+        </table>
+    </div>

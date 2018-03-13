@@ -1,0 +1,10 @@
+server:
+  port: 9090
+groovy:
+  script:
+    home: D:\medical\medical-module\md\
+view:
+  file:
+    path: D:\medical\medical-module\md\
+  prefix: /
+  suffix: .vm

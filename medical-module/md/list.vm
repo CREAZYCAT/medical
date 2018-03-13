@@ -7,5 +7,14 @@
                 <th>mobile</th>
             </tr>
             </thead>
+            <tbody>
+            #foreach($!i in $!info)
+            <tr>
+                <td>$!i.getName()</td>
+                <td>$!i.getAge()</td>
+                <td>$!i.getMobile()</td>
+            </tr>
+            #end
+            </tbody>
         </table>
     </div>

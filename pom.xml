@@ -10,6 +10,7 @@
     <modules>
         <module>medical-web</module>
         <module>medical-module</module>
+        <module>medical-netty</module>
     </modules>
     <packaging>pom</packaging>
 

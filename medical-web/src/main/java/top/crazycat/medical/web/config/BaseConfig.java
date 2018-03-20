@@ -1,10 +1,14 @@
 package top.crazycat.medical.web.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.velocity.app.VelocityEngine;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
+import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
@@ -17,6 +21,9 @@ import java.util.Properties;
 @Configuration
 public class BaseConfig {
 
+    @Autowired
+    private Environment env;
+
     @Value("${view.file.path}")
     private String fileResourceLoaderPath;
 
@@ -28,4 +35,14 @@ public class BaseConfig {
         properties.setProperty("file.resource.loader.path",fileResourceLoaderPath);
         return new VelocityEngine(properties);
     }
+
+    @Bean
+    public DataSource dataSource(){
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+        return dataSource;
+    }
+
 }

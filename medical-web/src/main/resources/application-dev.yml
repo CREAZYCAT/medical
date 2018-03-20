@@ -8,3 +8,9 @@ view:
     path: D:\medical\medical-module\md\
   prefix: /
   suffix: .vm
+spring:
+  datasource:
+    url: jdbc:mysql://10.0.2.158:3306/loanadmin
+    username: loanadmin
+    password: B1s%(sP5pF#x8!x
+    driver-class-name: com.mysql.jdbc.Driver

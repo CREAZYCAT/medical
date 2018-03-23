@@ -11,6 +11,7 @@
         <module>medical-web</module>
         <module>medical-module</module>
         <module>medical-netty</module>
+        <module>computer-science</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -21,9 +21,9 @@ public class BankDao extends AbstractJdbcDaoSupport<BankDO> {
         return query(BaseQuery.getInstance(new BankDO()));
     }
 
-    public List<BankDO> queryById(String bankId) {
+    public BankDO queryById(String bankId) {
         BankDO b = new BankDO();
         b.setBankId(bankId);
-        return super.query(BaseQuery.getInstance(b));
+        return super.queryOne(BaseQuery.getInstance(b));
     }
 }

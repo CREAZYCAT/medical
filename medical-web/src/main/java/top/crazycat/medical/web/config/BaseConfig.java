@@ -1,11 +1,13 @@
 package top.crazycat.medical.web.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.dubbo.registry.dubbo.DubboRegistry;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
@@ -19,6 +21,7 @@ import java.util.Properties;
  * description:
  */
 @Configuration
+@ImportResource(locations={"classpath:dubbo.xml"})
 public class BaseConfig {
 
     @Autowired

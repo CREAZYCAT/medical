@@ -14,3 +14,9 @@ spring:
     username: loanadmin
     password: B1s%(sP5pF#x8!x
     driver-class-name: com.mysql.jdbc.Driver
+    dubbo:
+      application:
+        name: consumer
+      registry:
+        address:  zookeeper://zk1.test.yiyaowang.com:2181
+    scan: top.crazycat.medical.web.service

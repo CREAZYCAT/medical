@@ -1,68 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-    <style>
-        .content_div{
-            font-size: larger;
-
-        }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layui</title>
+    <link rel="stylesheet" href="/static/lay/css/layui.css">
 </head>
-<body>
-<div data-role="page">
-    <div data-role="header">
-        <h1>列表</h1>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">TMS后台</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+##            <li class="layui-nav-item"><a href="javascript:;" url-k="/md/console.htm">控制台</a></li>
+##            <li class="layui-nav-item"><a href="javascript:;" url-k="/md/sku.htm">商品管理</a></li>
+##            <li class="layui-nav-item"><a href="javascript:;" url-k="/md/user.htm">用户</a></li>
+##            <li class="layui-nav-item">
+##                <a href="javascript:;">其它系统</a>
+##                <dl class="layui-nav-child">
+##                    <dd><a href="">邮件管理</a></dd>
+##                    <dd><a href="">消息管理</a></dd>
+##                    <dd><a href="">授权管理</a></dd>
+##                </dl>
+##            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" url-k="/md/user.basic.info.htm">基本资料</a></dd>
+                    <dd><a href="javascript:;" url-k="/md/system.secruity.config.htm">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="javascript:;" url-k="/md/user.logout.htm">退出</a></li>
+        </ul>
     </div>
-    <div data-role="footer" data-id="foo1" data-position="fixed">
-        <div data-role="navbar">
-            <ul id="nav_ul">
-                <li><a href="#" onclick="showContent(0)">列表信息</a></li>
-                <li><a href="#" onclick="showContent(1)">上传图片</a></li>
-                <li><a href="#" onclick="showContent(2)">个人</a></li>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;" url-k="/md/list.htm">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <li class="layui-nav-item">
+                                <a href="javascript:;">列表一</a>
+                                <dl class="layui-nav-child">
+                                    <dd><a href="javascript:;">列表一</a></dd>
+                                    <dd><a href="javascript:;">列表二</a></dd>
+                                </dl>
+                            </li>
+                        </dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;">云市场</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">发布商品</a></li>
             </ul>
-        </div><!-- /navbar -->
+        </div>
     </div>
-    <div data-role="content" id="list" _url="/md/list.htm" class="content_div">
+    <div class="layui-body" style="height: 100%-120px">
+        <div style="padding: 15px;height: 100%-135px" id="main_div"></div>
     </div>
-    <div data-role="content" id="up" _url="/md/up.htm" class="content_div">
-    </div>
-    <div data-role="content" id="my" _url="/md/my.htm" class="content_div">
+    <div class="layui-footer">
+        © crazycat.top
     </div>
 </div>
+<script src="/static/lay/layui.js"></script>
 <script>
-    $(function () {
-        $(".content_div").hide();
-        showContent(0);
-    })
+    layui.use(['jquery','layer','element'], function(){
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var element = layui.element;
 
-    function init(content) {
-        content.show();
-        var url = content[0].getAttribute("_url");
-        $.post(url,{},function (resp) {
-            $(resp).appendTo(content);
-        })
-    }
-
-    function destroy(content) {
-        content.empty();
-        content.hide();
-    }
-
-    function showContent(index) {
-        var lis = $(".content_div")
-        for(var i=0;i<lis.length;i++){
-            var content = $(lis[i]);
-            if(index == i){
-                destroy(content);
-                init(content);
-            }else {
-                destroy(content);
+        $("a").click(function (e) {
+            var url = this.getAttribute("url-k");
+            if(url){
+                $("#main_div").empty();
+                var iframe = '<iframe  name="if_content" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" onload="this.height=document.documentElement.clientHeight" src="'+url+'"></iframe>';
+                $("#main_div").append(iframe);
             }
-        }
-    }
+        })
+    });
 </script>
 </body>
 </html>

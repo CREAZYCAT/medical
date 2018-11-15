@@ -1,5 +1,6 @@
 package top.crazycat.medical.web.view;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ViewResolver;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -101,11 +103,14 @@ public class LocalFileViewResolver implements ViewResolver {
                 template.merge(context, httpServletResponse.getWriter());
             } catch (Exception e) {
                 log.error("",e);
+                Map<String,Object> errrorMsg = new HashMap<>();
                 if(e instanceof ResourceNotFoundException){
-                    httpServletResponse.getWriter().write("not found resource:"+viewName);
+                    errrorMsg.put("message","not found resource:"+velocityEngine.getProperty("file.resource.loader.path")+viewName);
                 }else {
-                    throw e;
+                    errrorMsg.put("message",e.getMessage());
                 }
+                errrorMsg.put("code",-1);
+                httpServletResponse.getWriter().write(JSON.toJSONString(errrorMsg));
             }
         }
     }

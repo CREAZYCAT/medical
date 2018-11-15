@@ -5,9 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,7 +26,7 @@ public class GroovySourceUtil {
         if(!scriptFile.exists()){
             return null;
         }
-        return new FileReader(scriptFile);
+        return new InputStreamReader(new FileInputStream(scriptFile),encoding);
     }
 //    private static String inputStreamToString(InputStream is, String encoding) throws Exception {
 //        try {

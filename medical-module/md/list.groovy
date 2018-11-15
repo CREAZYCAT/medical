@@ -4,28 +4,9 @@
 def execute(def req,def resp){
     def rs=[:];
     List info = new ArrayList();
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
-    info.add(new MdInfoDO("lyb",18,"18762036036"))
+    for(int i=0;i<10;i++){
+        info.add(new MdInfoDO("lyb"+i,18+i,"18762036036"))
+    }
     rs['info'] = info
     return rs;
 }
